@@ -12,15 +12,14 @@
 
 from bs4 import BeautifulSoup as bs
 import requests
-from pprint import pprint
-import json
+# from pprint import pprint
 import re
 import pandas as pd
 
 headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/101.0.4951.64 Safari/537.36'}
 job = 'Data science'
-main_url = 'https://hh.ru'
+main_url: str = 'https://hh.ru'
 page = 0
 params = {'text': job,
           'from': 'suggest_post',
@@ -35,13 +34,11 @@ soup = bs(response.text, 'html.parser')
 
 pages = int(soup.find_all('a', {'class': 'bloko-button'})[-2].getText())
 # pprint(pages)
-
+all_vacancies = []
 for page in range(pages):
     soup = bs(response.text, 'html.parser')
     vacancies = (soup.find_all('div', {'class': 'vacancy-serp-item'}))
     # pprint(len(vacancies))
-
-    all_vacancies = []
 
     for v in vacancies:
         v_data = {}

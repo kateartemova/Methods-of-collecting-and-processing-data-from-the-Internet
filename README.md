@@ -1,1 +1,1 @@
-Methods of collecting and processing data from the Internet
+Заглушка: MongoDB развернула, но до конца не доделала поиск, сделаю до 13.05
